@@ -1,0 +1,136 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3e5d8;
+    display: flex;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #8b5e3c;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 5px 0;
+    width: 100px;
+    height: 100px;
+    background-color: #5a3e2b;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-links a i {
+    font-size: 24px;
+    margin: 0 0 5px 0;
+}
+
+.nav-links a span {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.nav-links a:hover {
+    background-color: #a67c52;
+    transform: scale(1.05);
+}
+
+.form-container {
+    background: #d2b48c;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    margin-left: 400px;
+    margin-top: 100px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #5a3e2b;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #5a3e2b;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #a78b71;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background: #fdf6e3;
+    color: #5a3e2b;
+}
+
+input:focus {
+    outline: none;
+    border-color: #5a3e2b;
+    box-shadow: 0 0 5px #5a3e2b;
+}
+
+button {
+    display: flex;
+    height: 3em;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #eeeeee;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    border: none;
+    background: #5a3e2b;
+    color: #ffffff;
+   }
+   
+   button > svg {
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 20px;
+    transition: all 0.4s ease-in;
+   }
+   
+   button:hover > svg {
+    font-size: 1.2em;
+    transform: translateX(-5px);
+   }
+   
+   button:hover {
+    box-shadow: 9px 9px 33px #4a3223, -9px -9px 33px #d2b48c;
+    transform: translateY(-2px);
+   }
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Report</title>
+    <link rel="stylesheet" href="/static/css/report_styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <nav class="nav-links">
+                <a href="{{ url_for('index') }}"><i data-lucide="home"></i> Home</a>
+                <a href="/billing"><i data-lucide="file-text"></i> Billing</a>
+                <a href="{{ url_for('inventory') }}"><i data-lucide="box"></i> Inventory</a>
+                <a href="{{ url_for('add_product') }}"><i data-lucide="plus-circle"></i> Add Product</a>
+                <a href="{{ url_for('report') }}"><i data-lucide="bar-chart"></i> Report</a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <h1>Sales Report</h1>
+            <div id="categoryCarousel" class="category-buttons">
+                {% for category in categories %}
+                    <button class="category-btn" onclick="filterByCategory('{{ category }}')">{{ category }}</button>
+                {% endfor %}
+            </div>
+            <div>
+                <a href="/download_report" class="download-btn">Download Sales Report (PDF)</a>
+            </div>
+            <table id="sales-report">
+                <thead>
+                    <tr>
+                        <th>Sale ID</th>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Quantity Sold</th>
+                        <th>Total Price (₹)</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </main>
+    </div>
+    <script src="/static/js/report.js"></script>
+</body>
+</html>
