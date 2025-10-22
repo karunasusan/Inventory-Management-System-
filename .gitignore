@@ -1,0 +1,14 @@
+# Database
+database/
+*.db
+*.sqlite
+*.sqlite3
+
+# Generated Reports
+Report downloads/
+*.pdf
+
+# Python virtual environment
+venv/
+*.pyc
+__pycache__/
