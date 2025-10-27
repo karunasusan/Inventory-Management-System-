@@ -1,51 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory Dashboard</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body>
-    <!-- <div class="container"> -->
-        <aside class="sidebar">
-            <nav class="nav-links">
-                <a href="{{ url_for('index') }}"><i data-lucide="home"></i> Home</a>
-                <a href="/billing"><i data-lucide="file-text"></i> Billing</a>
-                <a href="{{ url_for('inventory') }}"><i data-lucide="box"></i> Inventory</a>
-                <a href="{{ url_for('add_product') }}"><i data-lucide="plus-circle"></i> Add Product</a>
-                <a href="{{ url_for('report') }}"><i data-lucide="bar-chart"></i> Report</a>
-            </nav>
-        </aside>
-        <main class="main-content">
-            <h1>Home</h1>
-            
-            <div class="cards">
-                <div class="card" id="quantity-in-hand" onclick="showRecentProducts()">
-                    <h2>Quantity in Hand</h2>
-                    <p class="big-number">{{ total_items }}</p>
-                </div>
-                <div class="card low-stock" id="low-stock" onclick="showLowStock()">
-                    <h2>Low Stock</h2>
-                    <p class="big-number red">{{ low_stock_count }}</p>
-                </div>
-            </div>
-            <table id="info-table" class="hidden">
-                <thead>
-                    <tr>
-                        <th>Item ID</th>
-                        <th>Item Name</th>
-                        <th>Category</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </main>
-    </div>
-    <script src="/static/js/dashboard.js"></script>
-</body>
-</html>
+{% extends 'base.html' %} {% block title %}Dashboard{% endblock %} {% block
+content %}
+<div class="page-header">
+  <h1>Dashboard</h1>
+</div>
+
+<div class="dashboard-cards">
+  <div
+    class="card stat-card"
+    id="quantity-in-hand"
+    onclick="showRecentProducts()"
+  >
+    <h2>Total Quantity in Hand</h2>
+    <p class="stat-number">{{ total_items }}</p>
+  </div>
+  <div class="card stat-card" id="low-stock" onclick="showLowStock()">
+    <h2>Low Stock Items</h2>
+    <p class="stat-number text-danger">{{ low_stock_count }}</p>
+  </div>
+</div>
+
+<h2 id="table-title" style="margin-top: 2rem"></h2>
+<table class="content-table hidden" id="info-table">
+  <thead>
+    <tr>
+      <th>Item ID</th>
+      <th>Item Name</th>
+      <th>Category</th>
+      <th>Quantity</th>
+      <th>Price (₹)</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+<script>
+  // Small addition to make the table titles cleaner
+  document.getElementById("quantity-in-hand").addEventListener("click", () => {
+    document.getElementById("table-title").textContent =
+      "Recently Added Products";
+  });
+  document.getElementById("low-stock").addEventListener("click", () => {
+    document.getElementById("table-title").textContent = "Low Stock Products";
+  });
+</script>
+{% endblock %}

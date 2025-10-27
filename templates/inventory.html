@@ -1,56 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory</title>
-    <link rel="stylesheet" href="/static/css/inventory_styles.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body>
-    <div class="container">
-        <aside class="sidebar">
-            <nav class="nav-links">
-                <a href="{{ url_for('index') }}"><i data-lucide="home"></i> Home</a>
-                <a href="/billing"><i data-lucide="file-text"></i> Billing</a>
-                <a href="{{ url_for('inventory') }}"><i data-lucide="box"></i> Inventory</a>
-                <a href="{{ url_for('add_product') }}"><i data-lucide="plus-circle"></i> Add Product</a>
-                <a href="{{ url_for('report') }}"><i data-lucide="bar-chart"></i> Report</a>
-            </nav>
-        </aside>
-        <main class="main-content">
-            <h1>Inventory</h1>
-            <div class="cards">
-                <div class="card" id="all-items" onclick="showAllItems()">
-                    <h2>All Items</h2>
-                    <p class="big-number">{{ total_items }}</p>
-                </div>
-                <div class="card low-stock" id="low-stock" onclick="showLowStock()">
-                    <h2>Low Stock</h2>
-                    <p class="big-number red">{{ low_stock_count }}</p>
-                </div>
-            </div>
-            <div id="categoryCarousel" class="category-buttons">
-                {% for category in categories %}
-                    <button class="category-btn" onclick="toggleCategory('{{ category }}')">{{ category }}</button>
-                {% endfor %}
-            </div>
-            <table id="info-table" class="hidden">
-                <thead>
-                    <tr>
-                        <th>Item ID</th>
-                        <th>Item Name</th>
-                        <th>Category</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </main>
-    </div>
-    <script src="/static/js/inventory.js"></script>
-</body>
-</html>
+{% extends 'base.html' %} {% block title %}Inventory{% endblock %} {% block
+content %}
+<div class="page-header">
+  <h1>Inventory Management</h1>
+  <a href="{{ url_for('add_product') }}" class="btn btn-primary">
+    <i data-lucide="plus"></i>
+    <span>Add Product</span>
+  </a>
+</div>
+
+<div class="dashboard-cards">
+  <div class="card stat-card" onclick="showAllItems()">
+    <h2>All Items (Units)</h2>
+    <p class="stat-number">{{ total_items }}</p>
+  </div>
+  <div class="card stat-card" onclick="showLowStock()">
+    <h2>Low Stock Items</h2>
+    <p class="stat-number text-danger">{{ low_stock_count }}</p>
+  </div>
+</div>
+
+<div class="filter-bar" id="categoryCarousel">
+  <button class="btn btn-secondary" onclick="showAllItems()">All Items</button>
+  {% for category in categories %}
+  <button class="btn btn-secondary" onclick="toggleCategory('{{ category }}')">
+    {{ category }}
+  </button>
+  {% endfor %}
+</div>
+
+<table class="content-table" id="info-table">
+  <thead>
+    <tr>
+      <th>Item ID</th>
+      <th>Item Name</th>
+      <th>Category</th>
+      <th>Quantity</th>
+      <th>Price (₹)</th>
+      <th>Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='js/inventory.js') }}"></script>
+{% endblock %}

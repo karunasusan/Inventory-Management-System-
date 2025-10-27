@@ -1,45 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Billing Page</title>
-    <link rel="stylesheet" href="/static/css/billing_styles.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body>
-    <div class="container">
-        <aside class="sidebar">
-            <nav class="nav-links">
-                <a href="{{ url_for('index') }}"><i data-lucide="home"></i> Home</a>
-                <a href="/billing"><i data-lucide="file-text"></i> Billing</a>
-                <a href="{{ url_for('inventory') }}"><i data-lucide="box"></i> Inventory</a>
-                <a href="{{ url_for('add_product') }}"><i data-lucide="plus-circle"></i> Add Product</a>
-                <a href="{{ url_for('report') }}"><i data-lucide="bar-chart"></i> Report</a>
-            </nav>
-        </aside>
-        <main class="main-content">
-            <h1>Billing</h1>
-            <form class="form">
-                <input class="input" id="search-bar" placeholder="Search for an item..." type="text" oninput="filterItems()">
-            </form>
-            <ul id="item-list" class="dropdown hidden">
-                {% for item in items %}
-                    <li onclick="addItem('{{ item.id }}', '{{ item.name }}', '{{ item.category }}', '{{ item.price }}')">{{ item.name }}</li>
-                {% endfor %}
-            </ul>
-            <div id="selected-items" class="selected-items"></div>
-            <button class="checkout-btn" onclick="checkout()">
-                <div class="default-btn">
-                    <i data-lucide="shopping-cart"></i>
-                    <span>Checkout!</span>
-                </div>
-                <div class="hover-btn">
-                    <span id="total-price">₹0.00</span>
-                </div>
-            </button>
-        </main>
+{% extends 'base.html' %} {% block title %}Billing{% endblock %} {% block
+content %}
+<div class="page-header">
+  <h1>Billing / Point of Sale</h1>
+</div>
+
+<div class="billing-layout">
+  <div class="billing-main">
+    <div class="billing-search-container">
+      <input
+        class="form-input"
+        id="search-bar"
+        placeholder="Search for an item by name..."
+        type="text"
+        oninput="filterItems()"
+      />
+      <ul id="item-list" class="billing-search-results hidden">
+        {% for item in items %}
+        <li
+          onclick="addItem('{{ item.id }}', '{{ item.name }}', '{{ item.category }}', '{{ item.price }}')"
+        >
+          <strong>{{ item.name }}</strong> ({{ item.category }})
+        </li>
+        {% endfor %}
+      </ul>
     </div>
-    <script src="/static/js/billing.js"></script>
-</body>
-</html>
+
+    <div id="selected-items"></div>
+  </div>
+
+  <div class="billing-summary">
+    <div class="card">
+      <h2>Order Summary</h2>
+      <p>Review your items before checkout.</p>
+      <div class="summary-line">
+        <span>Total</span>
+        <span id="total-price">₹0.00</span>
+      </div>
+      <button class="btn btn-primary checkout-btn" onclick="checkout()">
+        <i data-lucide="shopping-cart"></i>
+        <span>Checkout</span>
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='js/billing.js') }}"></script>
+{% endblock %}

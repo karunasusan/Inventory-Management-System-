@@ -1,67 +1,126 @@
-# 🧾 Inventory Management System
+# 🧾 Modern Inventory Management System
 
-This is a simple, **web-based Inventory Management System** built with **Flask** and **SQLite**.  
-It allows users to manage products, track inventory, handle sales through a billing interface, and generate detailed sales reports.
+A lightweight, full-stack **inventory and sales management system** built with **Flask** and **SQLite**.  
+This project provides a complete solution for tracking products, managing stock, processing sales, and generating reports — all wrapped in a **clean and responsive frontend** inspired by **Google's Material 3 Expressive Design**.
 
 ---
+
+<!--
+TODO: Replace this placeholder with a screenshot of your beautiful new UI!
+I've used your new color palette for the placeholder.
+-->
+
+---
+
+## 🚀 Core Features
 
 ### 📊 Dashboard
-At-a-glance view of key metrics, including total **Quantity in Hand** and **Low Stock** item count.
 
-### 📦 Product Management (CRUD)
-**Create:** Add new products to the inventory.  
-**Read:** View all products, filter by category, and see low-stock items.  
-**Update:** Edit existing product details (name, category, quantity, price).  
-**Delete:** Remove products from the inventory.
+A sleek homepage showing key metrics like:
 
-### 💳 Billing / Point-of-Sale (POS)
-Simple interface to search for products and add them to a bill.
-
-### ⚙️ Automatic Stock Control
-When a sale is completed via checkout, the system automatically deducts the sold quantity from the products table.
-
-### 📈 Sales Tracking
-All completed transactions are recorded in a separate sales table.
-
-### 🧾 Reporting
-View comprehensive sales reports directly in the app.  
-Filter reports by product category.  
-Download complete sales reports as a **PDF**.
+- Total items in stock
+- Count of low-stock products
 
 ---
 
-## 🧰 Technologies Used
-**Backend:** Python (Flask)  
-**Database:** SQLite 3  
-**Frontend:** HTML, CSS, Vanilla JavaScript  
-**PDF Generation:** ReportLab  
-**Icons:** Lucide Icons  
+### 📦 Full Product Management (CRUD)
+
+**Create:** Add new products with details like name, category, quantity, and price.  
+**Read:** View the entire inventory, with filters for _Low Stock_ and dynamic category buttons.  
+**Update:** Edit any existing product’s details.  
+**Delete:** Remove products from the inventory easily.
+
+---
+
+### 💵 Billing / Point-of-Sale (POS)
+
+- A fast, minimal billing interface with live search.
+- Add products to the cart dynamically.
+- Automatically deducts sold quantities from the products table when a sale is completed.
+
+---
+
+### 📈 Sales Tracking
+
+- Every completed transaction is logged in a dedicated **sales table**.
+- Perfect for auditing and performance tracking.
+
+---
+
+### 📊 Dynamic Reporting
+
+- View a complete, filterable history of all sales.
+- Filter reports by **product category**.
+- **Export to PDF**: Generate print-ready reports on demand using ReportLab.
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+
+- **Python 3**
+- **Flask** – Lightweight web framework for server-side logic & APIs
+- **SQLite 3** – File-based database for products and sales
+
+### Frontend
+
+- **HTML5** (with **Jinja2** templating)
+- **CSS3** – Modern, unified stylesheet inspired by **Material 3 Design**
+- **Vanilla JavaScript (ES6+)** – Powers dynamic UI interactions
+- **Lucide Icons** – Open-source, clean, and minimal icon set
+
+### PDF Generation
+
+- **ReportLab** – Python library for creating high-quality PDF reports
 
 ---
 
 ## ⚙️ Setup and Installation
 
-### 1️⃣ Clone the repository
-bash
-git clone <your-repository-url>
-cd <repository-folder>
-### 2️⃣ Create and activate a virtual environment
+Follow these steps to get the app running locally 👇
 
-#### Windows
-python -m venv venv
-venv\Scripts\activate
-#### macOS / Linux
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+```
+
+## 2️⃣ Create and Activate a Virtual Environment
+
+### 🖥️ macOS / Linux
+
+```bash
 python3 -m venv venv
 source venv/bin/activate
-###  3️⃣ Install dependencies
-bash
-Copy code
-pip install -r requirements.txt
-### 4️⃣ Run the application
-python app.py
-The app will automatically create the inventory.db file and the necessary products and sales tables if they don't exist.
+```
 
-### 5️⃣ Access the application
-Open your browser and go to:
-👉
-http://127.0.0.1:5000
+### 💻 Windows
+
+```bash
+python -m venv venv
+.\venv\Scripts\activate
+```
+
+## 3️⃣ Install Dependencies
+
+Install all required packages from `requirement.txt`:
+
+```bash
+pip install -r requirement.txt
+```
+
+## 4️⃣ Run the Application
+
+The app will automatically create the `inventory.db` database and its tables (`products`, `sales`) on first launch.
+
+```bash
+python app.py
+```
+
+## 5️⃣ Access the App
+
+Open your browser and navigate to:
+
+[http://127.0.0.1:5000](http://127.0.0.1:5000)
